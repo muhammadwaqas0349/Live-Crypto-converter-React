@@ -43,8 +43,14 @@ function App() {
   }
 
   useEffect(() => {
-    fetchCurrencyInfo();
-  }, [currency])
+    let time = setInterval( () => {
+      fetchCurrencyInfo();
+    }, 3000); 
+
+    return () => {
+      clearInterval(time);
+    }
+  }, [currency, selectedCurrency])
 
   return (
     <div className="App">
